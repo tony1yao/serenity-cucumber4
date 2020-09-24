@@ -30,7 +30,7 @@ src
     + java                          Test runners and supporting code
     + resources
       + features                    Feature files
-        + search                    Feature file subdirectories 
+        + search                    Feature file subdirectories
           search_by_keyword.feature  
       + webdriver                   Bundled webdriver binaries
         + linux
@@ -233,22 +233,22 @@ The Screenplay pattern describes tests in terms of actors and the tasks they per
 
     @Given("^(.*) is on the DuckDuckGo home page")
     public void on_the_DuckDuckGo_home_page(String actor) {
-        theActorCalled(actor).attemptsTo(         NavigateTo.theDuckDuckGoHomePage()     );
+        theActorCalled(actor).attemptsTo(        NavigateTo.theDuckDuckGoHomePage()    );
     }
 
     @When("she/he searches for {string}")
     public void search_for(String term) {
         theActorInTheSpotlight().attemptsTo(
-             SearchFor.term(term)      );
+             SearchFor.term(term)     );
     }
 
     @Then("all the result titles should contain the word {string}")
     public void all_the_result_titles_should_contain_the_word(String term) {
         theActorInTheSpotlight().should(
                 seeThat("search result titles",
-                        SearchResult.titles(),                     hasSize(greaterThan(0))),
+                        SearchResult.titles(),                    hasSize(greaterThan(0))),
                 seeThat("search result titles",
-                        SearchResult.titles(),                     everyItem(containsIgnoringCase(term)))
+                        SearchResult.titles(),                    everyItem(containsIgnoringCase(term)))
         );
     }
 ```
@@ -273,7 +273,7 @@ public class SearchFor {
 
     public static Performable term(String term) {
         return Task.where("{0} attempts to search for #term",
-                Clear.field(SearchForm.SEARCH_FIELD),             Enter.theValue(term).into(SearchForm.SEARCH_FIELD),
+                Clear.field(SearchForm.SEARCH_FIELD),            Enter.theValue(term).into(SearchForm.SEARCH_FIELD),
                 Click.on(SearchForm.SEARCH_BUTTON)
         ).with("term").of(term);
     }
